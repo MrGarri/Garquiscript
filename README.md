@@ -1,4 +1,4 @@
-# garquiscript
+# Garquiscript
 A small script to compile and execute m68k files.
 
 This is meant to be used if you're studying Computer Ingeneering on FIUPM (ETSIINF). You can obviously use this if
