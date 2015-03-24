@@ -19,16 +19,28 @@ emulator, navigate to the location the script is and execute the following comma
     chmod +x garquiscript.sh
         
 
-**Usage**
+### Usage
 
-*-h, --help:* Shows this help text. 
-*--version:* Shows actual version of the script.
-*--update:* Auto-updates the script to the latest version.
-*--plugins:* Downloads and installs some plugins to improve readibility of source files.
-*--install:* Downloads and installs all emulator files.
+    ./garquiscript [OPTION] FILENAME
+    
+The file must be specified without the extension, just by its name. By default, the script will compile the file,
+execute the emulator and load the .h file needed to run the program. However, you can specify the following options:
+
+*    *-c:* Only compiles the given file without executing it.
+*    *-m:* Compiles the file, executes it and opens memory window within the emulator.
+*    *-p:* Compiles the file, executes it and opens program listing window within the emulator.
+
+Here are also some special options you may find useful:
+
+*   *-h, --help:* Shows this help text.<br> 
+*   *--version:* Shows actual version of the script.<br>
+*   *--update:* Auto-updates the script to the latest version.<br>
+*   *--plugins:* Downloads and installs some plugins to improve readibility of source files.<br>
+*    *--install:* Downloads and installs all emulator files.
 
 **Execution example**
 
-    ./garquiscript.sh -mp <filename> -> This command will compile the file, launch the emulator,
-                                        load the necessary program to execute it and open program
-                                        listing and memory viewer windows within the emulator.
+This command will compile the file, launch the emulator, load the necessary file to execute it and open program
+listing and memory viewer windows within the emulator.
+
+    ./garquiscript.sh -mp <filename> 
