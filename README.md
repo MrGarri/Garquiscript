@@ -1,13 +1,13 @@
 # Garquiscript
 A small script to compile and execute m68k files. 
-To do this, I'm using BSVC emulator. You can find it here: <a href="http://www4.ncsu.edu/~bwmott/bsvc/" target="_blank">BSVC Emulator</a> 
+To do this, I'm using BSVC emulator. You can find it <a href="http://www4.ncsu.edu/~bwmott/bsvc/" target="_blank">here</a>.
 
 This is meant to be used if you're studying Computer Ingeneering on FIUPM (ETSIINF). You can obviously use this if
 you need to and you are not studying this, but this was the main purpose.
 
 It's all explained the first time you fire up the script, but just in case, this script will need to install some
 utilities to work properly. It's ok if you don't want to, but give them a chance. You can check the main program I
-use here in the following link: <a href="https://github.com/jordansissel/xdotool" target="_blank">xdotool utility</a>
+use to do some really cool things <a href="https://github.com/jordansissel/xdotool" target="_blank">here</a>.
 
 The other utilities are optional. They're only needed to improve the readibility of the m68k files when using Gedit
 or Sublime Text 3.
