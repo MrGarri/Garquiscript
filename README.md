@@ -24,7 +24,7 @@ emulator, navigate to the location the script is and execute the following comma
     ./garquiscript [OPTION] FILENAME
     
 The file must be specified without the extension, just by its name. By default, the script will compile the file,
-execute the emulator and load the .h file needed to run the program. However, you can specify the following options:
+execute the emulator and load the .h68 file needed to run the program. However, you can specify the following options:
 
 *    *-c:* Only compiles the given file without executing it.
 *    *-m:* Compiles the file, executes it and opens memory window within the emulator.
