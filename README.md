@@ -40,7 +40,7 @@ Here are also some special options you may find useful:
 
 **Execution example**
 
-This command will compile the file, launch the emulator, load the necessary file to execute it and open program
+The following command will compile the file, launch the emulator, load the necessary file to execute it and open program
 listing and memory viewer windows within the emulator.
 
     ./garquiscript.sh -mp <filename> 
