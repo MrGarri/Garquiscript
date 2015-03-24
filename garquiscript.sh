@@ -30,6 +30,7 @@ if [[ -e /usr/bin/xdotool ]]
 		HAS_XDOTOOL=true
 	fi
 
+
 if [[ ! $HAS_XDOTOOL ]]
 	then	
 		echo "We need to install some useful utilities to use this script correctly. Do you want to continue? [Y/n]"
@@ -43,49 +44,45 @@ if [[ ! $HAS_XDOTOOL ]]
 				clear
 				printf "\nInstallation completed.\n\n"
 				echo "-------------------------------${bold}HELP${normal}-------------------------------"
-		else
-			exit 1
-		fi
+			fi
 	fi
 	
-function pluginGedit {
-
-	if [[ $input == "ma niqqa" && ! $1 ]]
+if [[ $HAS_GEDIT && ! -f /usr/share/gtksourceview-3.0/language-specs/m68kasm.lang ]]
+	then
+		if [[ $input == "ma niqqa" ]]
 			then
 				echo "We have detected you have Gedit installed, which is really useful to edit .s files. Do you want to install a plugin to improve readibility? [Y/n] 
 (you may need to enter your administration password)"
 				read input
 			fi
-		if [[ $input == "Y" || $input == "y" || $input == "" || $1 ]]
+		if [[ $input == "Y" || $input == "y" || $input == "" ]]
 		then
 			echo "Installing utilities..."
 			wget --quiet --output-document=m68kasm.lang $GEDIT
 			sudo cp m68kasm.lang /usr/share/gtksourceview-3.0/language-specs/
 			rm m68kasm.lang
-		fi	
-		
-}		
+		fi
+fi
 
-function pluginSubl {
-
-	if [[ $input == "ma niqqa" && ! $1 ]]
-				then
-					echo "We have detected that you have Sublime Text 3 installed, which is really useful to edit .s files. Do you want to install a  
-	plugin to improve readibility? [Y/n]"
-					read input
-				fi	
-			if [[ $input == "Y" || $input == "y" || $input == "" || $1 ]]
+if [[ $HAS_SUBL && ! -d ~/.config/sublime-text-3/Packages/M68k-Assembly && -d ~/.config/sublime-text-3 ]]
+	then
+		if [[ $input == "ma niqqa" ]]
 			then
-				echo "Installing utilities..."
-				wget --quiet --output-document=M68k-Assembly.tar.gz $SUBL
-				cd ~/.config/sublime-text-3/Packages/
-				tar -zxf $CUR_DIR/M68k-Assembly.tar.gz 
-				cd $CUR_DIR
-				rm M68k-Assembly.tar.gz
-			fi
-
-} 
-
+				echo "We have detected that you have Sublime Text 3 installed, which is really useful to edit .s files. Do you want to install a  
+plugin to improve readibility? [Y/n]"
+				read input
+			fi	
+		if [[ $input == "Y" || $input == "y" || $input == "" ]]
+		then
+			echo "Installing utilities..."
+			wget --quiet --output-document=M68k-Assembly.tar.gz $SUBL
+			cd ~/.config/sublime-text-3/Packages/
+			tar -zxf $CUR_DIR/M68k-Assembly.tar.gz 
+			cd $CUR_DIR
+			rm M68k-Assembly.tar.gz
+		fi
+fi
+		 
 		
 
 function download {
@@ -154,7 +151,7 @@ function execute {
 	WID=`xdotool search "BSVC: Version 2.1"`
 	xdotool windowactivate --sync $WID
 	xdotool key ctrl+l
-	sleep 1
+	sleep 0.5
 	setxkbmap us
 	xdotool type $1.h68
 	setxkbmap es
@@ -162,16 +159,6 @@ function execute {
 	xdotool key Return
 
 }
-
-if [[ $HAS_GEDIT && ! -f /usr/share/gtksourceview-3.0/language-specs/m68kasm.lang ]]
-	then
-		pluginGedit false
-fi
-
-if [[ $HAS_SUBL && -d ~/.config/sublime-text-3 && ! -d ~/.config/sublime-text-3/Packages/M68k-Assembly ]]
-	then
-		pluginSubl false
-fi
 
 if [[ $1 == "--help" || $1 == "-h" || $1 == "" ]]
 	then 
@@ -182,45 +169,21 @@ if [[ $1 == "--help" || $1 == "-h" || $1 == "" ]]
 			
 		echo "OPTION:"
 			printf "\t${bold}-c:${normal} Only compiles the given file without executing it.\n"
-			printf "\t${bold}-m:${normal} Compiles the file, executes it and opens memory window within the emulator.\n"
-			printf "\t${bold}-p:${normal} Compiles the file, executes it and opens program listing window within the emulator.\n\n"
+			printf "\t${bold}-m:${normal} Compiles the file, execute it and open memory window within the emulator.\n"
+			printf "\t${bold}-p:${normal} Compiles the file, execute it and open program listing window within the emulator.\n\n"
 			
 		echo "Special options:"		
 			printf "\t${bold}-h, --help:${normal} Shows this help text.\n"
 			printf "\t${bold}--version:${normal} Shows actual version of the script.\n"
 			printf "\t${bold}--update:${normal} Auto-updates the script to the latest version.\n"
-			printf "\t${bold}--plugins:${normal} Downloads and installs some plugins to improve readibility of source files.\n"
 			printf "\t${bold}--install:${normal} Downloads and installs all emulator files.\n"
 		
-		printf "\nYou can ask my cat now how this script works and she just'll meaow you.\n\n"
+		printf "\nYou can ask my cat now how this script works.\n\n"
 		exit 0	
 
 elif [[ $1 == "--install" ]]
 	then
 		inst
-		pluginGedit true
-		pluginSubl true
-
-elif [[ $1 == "--plugins" ]]
-	then
-		if [[ $HAS_GEDIT ]]
-			then
-				if [[ -f /usr/share/gtksourceview-3.0/language-specs/m68kasm.lang ]]
-					then
-						sudo rm /usr/share/gtksourceview-3.0/language-specs/m68kasm.lang
-					fi
-				pluginGedit true
-			fi
-			
-		if [[ $HAS_SUBL && -d ~/.config/sublime-text-3 ]]
-			then
-				if [[ -d ~/.config/sublime-text-3/Packages/M68k-Assembly ]]
-					then
-						rm -rf ~/.config/sublime-text-3/Packages/M68k-Assembly
-					fi
-				pluginSubl true
-			fi
-
 elif [[ $1 == "--update" ]]
 	then
 		# Download new version
