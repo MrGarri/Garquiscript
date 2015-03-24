@@ -154,7 +154,7 @@ function execute {
 	WID=`xdotool search "BSVC: Version 2.1"`
 	xdotool windowactivate --sync $WID
 	xdotool key ctrl+l
-	sleep 0.5
+	sleep 1
 	setxkbmap us
 	xdotool type $1.h68
 	setxkbmap es
@@ -182,8 +182,8 @@ if [[ $1 == "--help" || $1 == "-h" || $1 == "" ]]
 			
 		echo "OPTION:"
 			printf "\t${bold}-c:${normal} Only compiles the given file without executing it.\n"
-			printf "\t${bold}-m:${normal} Compiles the file, execute it and open memory window within the emulator.\n"
-			printf "\t${bold}-p:${normal} Compiles the file, execute it and open program listing window within the emulator.\n\n"
+			printf "\t${bold}-m:${normal} Compiles the file, executes it and opens memory window within the emulator.\n"
+			printf "\t${bold}-p:${normal} Compiles the file, executes it and opens program listing window within the emulator.\n\n"
 			
 		echo "Special options:"		
 			printf "\t${bold}-h, --help:${normal} Shows this help text.\n"
