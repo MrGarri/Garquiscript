@@ -5,7 +5,7 @@ BSVC=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/Linux_b
 GEDIT=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/m68kasm.lang
 SUBL=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/M68k-Assembly.tar.gz
 CUR_DIR="$(pwd)"
-VERSION=0.51
+VERSION=0.52
 SELF=$(basename $0)
 bold=`tput bold`
 normal=`tput sgr0`
@@ -149,10 +149,11 @@ function inst {
 
 function execute {
 
-	bsvc practica.setup &
+	bsvc /usr/local/bsvc/samples/m68000/practica.setup &
 	sleep 1
 	WID=`xdotool search "BSVC: Version 2.1"`
 	xdotool windowactivate --sync $WID
+	sleep 0.1
 	xdotool key ctrl+l
 	sleep 1
 	setxkbmap us
