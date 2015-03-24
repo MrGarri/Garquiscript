@@ -1,9 +1,9 @@
 #!/bin/bash
 
 UPDATE_BASE=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/garquiscript.sh
-BSVC=https://dl.dropboxusercontent.com/u/43551467/Linux_bsvc-2.1%2B_Estatica.tar.gz
-GEDIT=https://dl.dropboxusercontent.com/u/43551467/m68kasm.lang
-SUBL=https://dl.dropboxusercontent.com/u/43551467/M68k-Assembly.tar.gz
+BSVC=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/Linux_bsvc-2.1%2B_Estatica.tar.gz
+GEDIT=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/m68kasm.lang
+SUBL=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/M68k-Assembly.tar.gz
 CUR_DIR="$(pwd)"
 VERSION=0.5
 SELF=$(basename $0)
