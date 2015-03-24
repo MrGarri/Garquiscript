@@ -44,3 +44,9 @@ The following command will compile the file, launch the emulator, load the neces
 listing and memory viewer windows within the emulator.
 
     ./garquiscript.sh -mp <filename> 
+    
+In case you've made some changes to your source code while the emulator was opened, there's no need to close it. Just use the script to compile the file again using the following command:
+
+    ./garquiscript.sh -c <filename>
+    
+After that, reload the .h68 file into the emulator, click reset and you're done.
