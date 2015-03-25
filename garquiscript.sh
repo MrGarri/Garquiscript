@@ -1,11 +1,11 @@
 #!/bin/bash
 
+VERSION=0.54
 UPDATE_BASE=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/garquiscript.sh
 BSVC=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/Linux_bsvc-2.1%2B_Estatica.tar.gz
 GEDIT=https://raw.githubusercontent.com/svg153/m68kasm-syntax/master/m68kasm_svg153.lang
 SUBL=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/M68k-Assembly.tar.gz
 CUR_DIR="$(pwd)"
-VERSION=0.53
 SELF=$(basename $0)
 bold=`tput bold`
 normal=`tput sgr0`
@@ -14,8 +14,6 @@ input="ma niqqa"
 HAS_GEDIT=false
 HAS_SUBL=false
 HAS_XDOTOOL=false
-
-#echo $EXEC
 
 if [[ -e /usr/bin/gedit ]]
 	then
@@ -225,12 +223,12 @@ elif [[ $1 == "--plugins" ]]
 elif [[ $1 == "--update" ]]
 	then
 		# Download new version
-		download $0.tmp $UPDATE_BASE
+		download $SELF.tmp $UPDATE_BASE
 		# Copy over modes from old version
 		OCTAL_MODE=$(stat -c '%a' $0)
 		chmod $OCTAL_MODE $0.tmp
 		# Overwrite old file with new
-		mv -f $0.tmp $0
+		mv -f $SELF.tmp $SELF
 		
 		if [[ $? == 0 ]]
 			then
