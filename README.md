@@ -13,7 +13,7 @@ The other utilities are optional. They're only needed to improve the readibility
 or Sublime Text 3.
 
 
-Right after you've downloaded the script (right-click on it and select 'Save link as...' option), open a terminal
+Right after you've downloaded the script from <a href="https://raw.githubusercontent.com/MrGarri/Garquiscript/master/garquiscript.sh" target="_blank">here</a> (right-click on the link and select 'Save link as...' option), open a terminal
 emulator, navigate to the location the script is and execute the following command:
 
     chmod +x garquiscript.sh
