@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.55
+VERSION=0.56
 UPDATE_BASE=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/garquiscript.sh
 BSVC=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/Linux_bsvc-2.1%2B_Estatica.tar.gz
 GEDIT=https://raw.githubusercontent.com/svg153/m68kasm-syntax/master/m68kasm_svg153.lang
@@ -90,7 +90,7 @@ function download {
 
 	wget --quiet --output-document=$1 $2 &
 
-	while [[ $(jobs | grep "Running" | wc -l) -gt 0 ]]
+	while [[ $(ps | grep -c "wget") -gt 0 ]]
 		do
 			echo -ne "Downloading files.  \r"
 			sleep 0.5
