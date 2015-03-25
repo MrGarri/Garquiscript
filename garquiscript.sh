@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.56
+VERSION=0.6
 UPDATE_BASE=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/garquiscript.sh
 BSVC=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/Linux_bsvc-2.1%2B_Estatica.tar.gz
 GEDIT=https://raw.githubusercontent.com/svg153/m68kasm-syntax/master/m68kasm_svg153.lang
@@ -30,13 +30,13 @@ if [[ -e /usr/bin/xdotool ]]
 
 function pluginGedit {
 
-	if [[ $input == "ma niqqa" && ! $1 ]]
+	if [[ $input == "ma niqqa" && $1 == false ]]
 		then
 			echo "We have detected you have Gedit installed, which is really useful to edit .s files. Do you want to install a plugin to improve readibility? [Y/n] 
 (you may need to enter your administration password)"
 			read input
 		fi
-	if [[ $input == "Y" || $input == "y" || $input == "" || $1 ]]
+	if [[ $input == "Y" || $input == "y" || $input == "" || $1 == true ]]
 		then
 			echo "Installing utilities..."
 			wget --quiet --output-document=m68kasm.lang $GEDIT
@@ -48,13 +48,13 @@ function pluginGedit {
 
 function pluginSubl {
 
-	if [[ $input == "ma niqqa" && ! $1 ]]
+	if [[ $input == "ma niqqa" && $1 == false ]]
 		then
 			echo "We have detected that you have Sublime Text 3 installed, which is really useful to edit .s files. Do you want to install a  
 plugin to improve readibility? [Y/n]"
 			read input
 		fi	
-	if [[ $input == "Y" || $input == "y" || $input == "" || $1 ]]
+	if [[ $input == "Y" || $input == "y" || $input == "" || $1 == false ]]
 		then
 			echo "Installing utilities..."
 			wget --quiet --output-document=M68k-Assembly.tar.gz $SUBL
@@ -94,6 +94,7 @@ function inst {
 		fi
 
 	echo "In order to install the program properly, you may need to enter your password. Please, follow the steps."
+	sudo echo -ne
 	cd /
 	umask 22
 	
@@ -125,6 +126,8 @@ function inst {
 	sudo touch /usr/local/bsvc/bin/UI/bsvc.ad 
 
 	echo "export PATH="'$PATH'":/usr/local/bsvc/bin" >> ~/.bashrc
+	
+	cd $CUR_DIR
 }
 
 function execute {
@@ -144,7 +147,11 @@ function execute {
 
 }
 
-if [[ ! $HAS_XDOTOOL ]]
+echo $HAS_XDOTOOL
+echo $HAS_GEDIT
+echo $HAS_SUBL
+
+if [[ $HAS_XDOTOOL == false ]]
 	then	
 		echo "We need to install some useful utilities to use this script correctly. Do you want to continue? [Y/n]"
 		read input
@@ -163,12 +170,12 @@ if [[ ! $HAS_XDOTOOL ]]
 	fi
 	
 
-if [[ $HAS_GEDIT && ! -f /usr/share/gtksourceview-3.0/language-specs/m68kasm.lang ]]
+if [[ $HAS_GEDIT == true && ! -f /usr/share/gtksourceview-3.0/language-specs/m68kasm.lang ]]
 	then
 		pluginGedit false
 fi
 
-if [[ $HAS_SUBL && -d ~/.config/sublime-text-3 && ! -d ~/.config/sublime-text-3/Packages/M68k-Assembly ]]
+if [[ $HAS_SUBL == true && -d ~/.config/sublime-text-3 && ! -d ~/.config/sublime-text-3/Packages/M68k-Assembly ]]
 	then
 		pluginSubl false
 fi
@@ -198,9 +205,15 @@ if [[ $1 == "--help" || $1 == "-h" || $1 == "" ]]
 elif [[ $1 == "--install" ]]
 	then
 		inst
-		pluginGedit true
-		pluginSubl true
-
+		if [[ $HAS_GEDIT == true ]]
+			then
+				pluginGedit true
+			fi
+		if [[ $HAS_SUBL == true ]]
+			then
+				pluginSubl true
+			fi
+		
 elif [[ $1 == "--plugins" ]]
 	then
 		if [[ $HAS_GEDIT ]]
