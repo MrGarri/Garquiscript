@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.6
+VERSION=0.65
 UPDATE_BASE=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/garquiscript.sh
 BSVC=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/Linux_bsvc-2.1%2B_Estatica.tar.gz
 GEDIT=https://raw.githubusercontent.com/svg153/m68kasm-syntax/master/m68kasm_svg153.lang
@@ -54,7 +54,7 @@ function pluginSubl {
 plugin to improve readibility? [Y/n]"
 			read input
 		fi	
-	if [[ $input == "Y" || $input == "y" || $input == "" || $1 == false ]]
+	if [[ $input == "Y" || $input == "y" || $input == "" || $1 == true ]]
 		then
 			echo "Installing utilities..."
 			wget --quiet --output-document=M68k-Assembly.tar.gz $SUBL
@@ -146,10 +146,6 @@ function execute {
 	xdotool key Return
 
 }
-
-echo $HAS_XDOTOOL
-echo $HAS_GEDIT
-echo $HAS_SUBL
 
 if [[ $HAS_XDOTOOL == false ]]
 	then	
