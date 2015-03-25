@@ -2,7 +2,7 @@
 
 UPDATE_BASE=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/garquiscript.sh
 BSVC=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/Linux_bsvc-2.1%2B_Estatica.tar.gz
-GEDIT=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/m68kasm.lang
+GEDIT=https://raw.githubusercontent.com/svg153/m68kasm-syntax/master/m68kasm_svg153.lang
 SUBL=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/M68k-Assembly.tar.gz
 CUR_DIR="$(pwd)"
 VERSION=0.52
