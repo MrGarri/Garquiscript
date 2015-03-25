@@ -31,12 +31,12 @@ if [[ -e /usr/bin/xdotool ]]
 function pluginGedit {
 
 	if [[ $input == "ma niqqa" && ! $1 ]]
-			then
-				echo "We have detected you have Gedit installed, which is really useful to edit .s files. Do you want to install a plugin to improve readibility? [Y/n] 
+		then
+			echo "We have detected you have Gedit installed, which is really useful to edit .s files. Do you want to install a plugin to improve readibility? [Y/n] 
 (you may need to enter your administration password)"
-				read input
-			fi
-		if [[ $input == "Y" || $input == "y" || $input == "" || $1 ]]
+			read input
+		fi
+	if [[ $input == "Y" || $input == "y" || $input == "" || $1 ]]
 		then
 			echo "Installing utilities..."
 			wget --quiet --output-document=m68kasm.lang $GEDIT
@@ -49,20 +49,20 @@ function pluginGedit {
 function pluginSubl {
 
 	if [[ $input == "ma niqqa" && ! $1 ]]
-				then
-					echo "We have detected that you have Sublime Text 3 installed, which is really useful to edit .s files. Do you want to install a  
-	plugin to improve readibility? [Y/n]"
-					read input
-				fi	
-			if [[ $input == "Y" || $input == "y" || $input == "" || $1 ]]
-			then
-				echo "Installing utilities..."
-				wget --quiet --output-document=M68k-Assembly.tar.gz $SUBL
-				cd ~/.config/sublime-text-3/Packages/
-				tar -zxf $CUR_DIR/M68k-Assembly.tar.gz 
-				cd $CUR_DIR
-				rm M68k-Assembly.tar.gz
-			fi
+		then
+			echo "We have detected that you have Sublime Text 3 installed, which is really useful to edit .s files. Do you want to install a  
+plugin to improve readibility? [Y/n]"
+			read input
+		fi	
+	if [[ $input == "Y" || $input == "y" || $input == "" || $1 ]]
+		then
+			echo "Installing utilities..."
+			wget --quiet --output-document=M68k-Assembly.tar.gz $SUBL
+			cd ~/.config/sublime-text-3/Packages/
+			tar -zxf $CUR_DIR/M68k-Assembly.tar.gz 
+			cd $CUR_DIR
+			rm M68k-Assembly.tar.gz
+		fi
 
 } 
 
