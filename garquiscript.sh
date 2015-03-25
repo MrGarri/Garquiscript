@@ -28,24 +28,6 @@ if [[ -e /usr/bin/xdotool ]]
 		HAS_XDOTOOL=true
 	fi
 
-if [[ ! $HAS_XDOTOOL ]]
-	then	
-		echo "We need to install some useful utilities to use this script correctly. Do you want to continue? [Y/n]"
-		read input
-		if [[ $input == "Y" || $input == "y" || $input == "" ]]
-			then
-				echo "In order to install the program properly, you may need to enter your password. Please, follow the steps."
-				sudo echo -ne
-				echo "Installing utilities..."
-				sudo apt-get install xdotool
-				clear
-				printf "\nInstallation completed.\n\n"
-				echo "-------------------------------${bold}HELP${normal}-------------------------------"
-		else
-			exit 1
-		fi
-	fi
-	
 function pluginGedit {
 
 	if [[ $input == "ma niqqa" && ! $1 ]]
@@ -161,6 +143,25 @@ function execute {
 	xdotool key Return
 
 }
+
+if [[ ! $HAS_XDOTOOL ]]
+	then	
+		echo "We need to install some useful utilities to use this script correctly. Do you want to continue? [Y/n]"
+		read input
+		if [[ $input == "Y" || $input == "y" || $input == "" ]]
+			then
+				echo "In order to install the program properly, you may need to enter your password. Please, follow the steps."
+				sudo echo -ne
+				echo "Installing utilities..."
+				sudo apt-get install xdotool
+				clear
+				printf "\nInstallation completed.\n\n"
+				echo "-------------------------------${bold}HELP${normal}-------------------------------"
+		else
+			exit 1
+		fi
+	fi
+	
 
 if [[ $HAS_GEDIT && ! -f /usr/share/gtksourceview-3.0/language-specs/m68kasm.lang ]]
 	then
