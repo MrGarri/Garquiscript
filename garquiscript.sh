@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.65
+VERSION=0.8
 UPDATE_BASE=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/garquiscript.sh
 BSVC=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/Linux_bsvc-2.1%2B_Estatica.tar.gz
 GEDIT=https://raw.githubusercontent.com/svg153/m68kasm-syntax/master/m68kasm_svg153.lang
@@ -139,11 +139,14 @@ function execute {
 	sleep 0.1
 	xdotool key ctrl+l
 	sleep 1
+	WID=`xdotool search "Select program to load:"`
+	xdotool windowactivate --sync $WID
 	setxkbmap us
 	xdotool type $1.h68
 	setxkbmap es
 	sleep 0.5
 	xdotool key Return
+	WID=`xdotool search "BSVC: Version 2.1"`
 
 }
 
@@ -267,15 +270,16 @@ elif [[ $(echo $1 | grep "-" | grep -c "c") -gt 0 ]]
 
 elif [[ ! $2 ]]
 	then
-		68kasm -l $1.s
-		if [[ $? == 22 ]]
+		if [[ $(68kasm es_int.s 2>&1 | tee /dev/tty | grep -c "No errors") -gt 0 ]]
 			then
 				execute $1
-			fi
+		else
+			echo -e "An unexpected error occured. Check your code and try again.\n"
+			exit 1
+		fi
 		
 else
-	68kasm -l $2.s
-	if [[ $? == 22 ]]
+	if [[ $(68kasm es_int.s 2>&1 | tee /dev/tty | grep -c "No errors") -gt 0 ]]
 		then
 			execute $2
 			if [[ $(echo $1 | grep "-" | grep -c "p") -gt 0 ]]
@@ -287,8 +291,11 @@ else
 				then
 					xdotool windowactivate --sync $WID
 					xdotool key ctrl+m
-				fi					
-		fi
+				fi
+	else
+		echo -e "An unexpected error occured. Check your code and try again.\n"
+		exit 1
+	fi
 	
 fi
 
