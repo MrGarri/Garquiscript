@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.81
+VERSION=0.82
 UPDATE_BASE=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/garquiscript.sh
 BSVC=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/Linux_bsvc-2.1%2B_Estatica.tar.gz
 GEDIT=https://raw.githubusercontent.com/svg153/m68kasm-syntax/master/m68kasm_svg153.lang
@@ -261,7 +261,7 @@ elif [[ $1 == "--update" ]]
 elif [[ $1 == "--version" ]]
 	then
 		printf "\n${bold}GarquiScript version:${normal} $VERSION\n\n"
-		#printf "${bold}Last updated${normal} on $(date -r $SELF).\n\n"
+		printf "${bold}Last updated:${normal} $(date -r $SELF).\n\n"
 		exit 0				
 		
 elif [[ $(echo $1 | grep "-" | grep -c "c") -gt 0 ]]
@@ -270,7 +270,7 @@ elif [[ $(echo $1 | grep "-" | grep -c "c") -gt 0 ]]
 
 elif [[ ! $2 ]]
 	then
-		if [[ $(68kasm $1.s 2>&1 | tee /dev/tty | grep -c "No errors") -gt 0 ]]
+		if [[ $(68kasm -l $1.s 2>&1 | tee /dev/tty | grep -c "No errors") -gt 0 ]]
 			then
 				execute $1
 		else
@@ -279,7 +279,7 @@ elif [[ ! $2 ]]
 		fi
 		
 else
-	if [[ $(68kasm $2.s 2>&1 | tee /dev/tty | grep -c "No errors") -gt 0 ]]
+	if [[ $(68kasm -l $2.s 2>&1 | tee /dev/tty | grep -c "No errors") -gt 0 ]]
 		then
 			execute $2
 			if [[ $(echo $1 | grep "-" | grep -c "p") -gt 0 ]]
