@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.82
+VERSION=0.83
 UPDATE_BASE=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/garquiscript.sh
 BSVC=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/Linux_bsvc-2.1%2B_Estatica.tar.gz
 GEDIT=https://raw.githubusercontent.com/svg153/m68kasm-syntax/master/m68kasm_svg153.lang
@@ -10,6 +10,14 @@ SELF=$(basename $0)
 bold=`tput bold`
 normal=`tput sgr0`
 input="ma niqqa"
+
+#Get the actual keymap in order to restore it later
+VAR=$(setxkbmap -query | grep layout)
+IFS=':'
+array=( $VAR )
+IFS=','
+array2=( ${array[1]} )
+MAP="${array2[0]}"
 
 HAS_GEDIT=false
 HAS_SUBL=false
@@ -143,7 +151,7 @@ function execute {
 	xdotool windowactivate --sync $WID
 	setxkbmap us
 	xdotool type $1.h68
-	setxkbmap es
+	setxkbmap $MAP
 	sleep 0.5
 	xdotool key Return
 	WID=`xdotool search "BSVC: Version 2.1"`
