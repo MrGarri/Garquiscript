@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.83
+VERSION=0.84
 UPDATE_BASE=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/garquiscript.sh
 BSVC=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/Linux_bsvc-2.1%2B_Estatica.tar.gz
 GEDIT=https://raw.githubusercontent.com/svg153/m68kasm-syntax/master/m68kasm_svg153.lang
@@ -141,7 +141,7 @@ function inst {
 function execute {
 
 	bsvc /usr/local/bsvc/samples/m68000/practica.setup &
-	sleep 1
+	sleep 1.5
 	WID=`xdotool search "BSVC: Version 2.1"`
 	xdotool windowactivate --sync $WID
 	sleep 0.1
@@ -280,7 +280,7 @@ elif [[ ! $2 ]]
 	then
 		if [[ $(68kasm -l $1.s 2>&1 | tee /dev/tty | grep -c "No errors") -gt 0 ]]
 			then
-				execute $1
+				execute $1 
 		else
 			echo -e "An unexpected error occured. Check your code and try again.\n"
 			exit 1
