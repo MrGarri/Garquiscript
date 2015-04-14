@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.8.4.1
+VERSION=0.8.4.2
 UPDATE_BASE=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/garquiscript.sh
 BSVC=https://raw.githubusercontent.com/MrGarri/Garquiscript/master/Files/Linux_bsvc-2.1%2B_Estatica.tar.gz
 GEDIT=https://raw.githubusercontent.com/svg153/m68kasm-syntax/master/m68kasm_svg153.lang
@@ -206,7 +206,7 @@ if [[ $1 == "--help" || $1 == "-h" || $1 == "" ]]
 			printf "\t${bold}--plugins:${normal} Downloads and installs some plugins to improve readibility of source files.\n"
 			printf "\t${bold}--install:${normal} Downloads and installs all emulator files.\n"
 		
-		printf "\nYou can ask my cat now how this script works and she just'll meaow you.\n\n"
+		printf "\nYou can ask my cat now how this script works and she'll just meaow you.\n\n"
 		exit 0	
 
 elif [[ $1 == "--install" ]]
