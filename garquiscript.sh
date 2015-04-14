@@ -271,7 +271,8 @@ elif [[ $1 == "--version" ]]
 		printf "\n${bold}GarquiScript version:${normal} $VERSION\n\n"
 		printf "${bold}Last updated:${normal} $(date -r $SELF).\n\n"
 		exit 0				
-		
+
+#Main program		
 elif [[ $(echo $1 | grep "-" | grep -c "c") -gt 0 ]]
 	then
 		68kasm -l $2.s
@@ -282,7 +283,7 @@ elif [[ ! $2 ]]
 			then
 				execute $1 
 		else
-			echo -e "An unexpected error occured. Check your code and try again.\n"
+			echo -e "A compilation error occured. Check your code and try again.\n"
 			exit 1
 		fi
 		
@@ -301,7 +302,7 @@ else
 					xdotool key ctrl+m
 				fi
 	else
-		echo -e "An unexpected error occured. Check your code and try again.\n"
+		echo -e "A compilation error occured. Check your code and try again.\n"
 		exit 1
 	fi
 	
