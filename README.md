@@ -49,4 +49,4 @@ In case you've made some changes to your source code while the emulator was open
 
     ./garquiscript.sh -c <filename>
     
-After that, reload the .h68 file into the emulator, click reset and you're done.
+After that, reload the .h68 file into the emulator and the setup, click reset and you're done.
