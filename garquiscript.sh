@@ -244,12 +244,12 @@ elif [[ $1 == "--plugins" ]]
 elif [[ $1 == "--update" ]]
 	then
 		# Download new version
-		download $SELF.tmp $UPDATE_BASE
+		download $CUR_DIR/$SELF.tmp $UPDATE_BASE
 		# Copy over modes from old version
 		OCTAL_MODE=$(stat -c '%a' $0)
-		chmod $OCTAL_MODE $0.tmp
+		chmod $OCTAL_MODE $CUR_DIR/$SELF.tmp
 		# Overwrite old file with new
-		mv -f $SELF.tmp $SELF
+		mv -f $CUR_DIR/$SELF.tmp $SELF
 		
 		if [[ $? == 0 ]]
 			then
